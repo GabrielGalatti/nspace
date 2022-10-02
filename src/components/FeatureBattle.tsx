@@ -6,7 +6,7 @@ type Feature = {
   value: string;
 };
 
-type FeatureBattleProps = {
+export type FeatureBattleProps = {
   title: string;
   winner: "lft" | "rgt" | "draw";
   lft: Feature;

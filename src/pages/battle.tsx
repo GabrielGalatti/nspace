@@ -4,7 +4,7 @@ import { Box, Flex, Text } from "@chakra-ui/react";
 import Avatar, { genConfig } from "react-nice-avatar";
 
 import { PageTitle } from "../components/PageTitle";
-import { FeatureBattle } from "../components/FeatureBattle";
+import { FeatureBattle, FeatureBattleProps } from "../components/FeatureBattle";
 
 const CONFIG_A = {
   sex: "man",
@@ -54,6 +54,51 @@ const Battle: NextPage = () => {
     Gravity: "2.5x Earth",
   };
 
+  const mockFeaturesBattle: FeatureBattleProps[] = [
+    {
+      title: "Temperatura",
+      winner: "lft",
+      lft: {
+        title: "Micróbio Pyrolobus fumarii",
+        value:
+          "Em um planeta como esse, uma característica que ajuda você a sobreviver em temperaturas extremas é a melhor opção.",
+      },
+      rgt: {
+        title: "Glândulas sudoríparas",
+        value:
+          "Glândulas sudoríparas servem para resfriar o corpo, mas elas tem um limite, que é bem inferior ao limite de outras características mais extremas",
+      },
+    },
+    {
+      title: "Oxigênio",
+      winner: "rgt",
+      lft: {
+        title: "Parasitismo",
+        value:
+          "O uso de parasitismo para obter energia diretamente de seu hospedeiro é uma boa solução, mas como o mesmo vai precisar de oxigênio, não é a melhor solução possível.",
+      },
+      rgt: {
+        title: "Sono Criogênico",
+        value:
+          "Entrar em sono criogênico, onde o metabolismo quase para, ajudará o seu oponente a sobreviver mais do que você",
+      },
+    },
+    {
+      title: "Água",
+      winner: "rgt",
+      lft: {
+        title: "Absorção de água através da Pele",
+        value:
+          "Quando a quantidade de água já é limitada, não existem fontes de onde obter mais dela, dessa forma um local alternativo de absorção não é a melhor escolha. Um reservatório interno também será consumido em algum momento.",
+      },
+      rgt: {
+        title: "Membrana de muco",
+        value:
+          "Limitar a perda de água fará com o seu oponente sobreviva por mais tempo",
+      },
+    },
+  ];
+
   return (
     <Flex w="100vw" h="100vh" bgColor="#060126">
       <Flex h="100%" left="0" flex={2} py="50px" flexDir="column" px="20px">
@@ -63,21 +108,13 @@ const Battle: NextPage = () => {
           <Avatar style={{ width: "8rem", height: "8rem" }} {...battler_B} />
         </Flex>
         <Flex w="100%" flexDir="column" overflowY="auto">
-          {Object.keys(faseFeaturesMock).map((key) => (
+          {mockFeaturesBattle.map((key, index) => (
             <FeatureBattle
               winner="draw"
-              title={key}
-              lft={{
-                title: "Nome da Habilidade",
-                value:
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-              }}
-              rgt={{
-                title: "Nome da Habilidade",
-                value:
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-              }}
-              key={`feature-${key}`}
+              title={key.title}
+              lft={key.lft}
+              rgt={key.rgt}
+              key={`feature-${index}`}
             />
           ))}
         </Flex>

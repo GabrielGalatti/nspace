@@ -1,11 +1,33 @@
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import type { NextPage } from "next";
 import { Box, Flex } from "@chakra-ui/react";
+
 import { BoxDarkOpacity } from "../components/BoxDarkOpacity";
 import { PageTitle } from "../components/PageTitle";
 import { MenuButton } from "../components/MenuButton";
 
+import { SkillCategory } from "../types/SkillCategory";
+
+import { firestore } from "../config";
+
+import useFirebaseQuery from "../hooks/useFirebaseQuery";
+
 const Skills: NextPage = () => {
+  const [skillCategories, setSkillCategories] = useState<SkillCategory[]>([]);
+  const { getAllDocuments } = useFirebaseQuery<SkillCategory>(
+    "skills_categories",
+    firestore
+  );
+
+  const getSkillsCategories = useCallback(async () => {
+    const categories = await getAllDocuments();
+    setSkillCategories(categories || []);
+  }, []);
+
+  useEffect(() => {
+    getSkillsCategories();
+  }, [getSkillsCategories]);
+
   return (
     <Box w="100vw" h="100vh" bgColor="#060126" position="relative">
       <Box
