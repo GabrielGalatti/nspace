@@ -6,7 +6,7 @@ import { MenuButton, MenuButtonProps } from "../components/MenuButton";
 
 const Home: NextPage = () => {
   const menuButtons: MenuButtonProps[] = [
-    { label: "New Game", to: "/new-game" },
+    { label: "New Game", to: "/battle" },
     { label: "Rules", to: "/rules" },
   ];
 
