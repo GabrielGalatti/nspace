@@ -34,7 +34,7 @@ const Home: NextPage = () => {
         zIndex={1000}
       >
         {menuButtons.map((menuButton) => (
-          <MenuButton {...menuButton} />
+          <MenuButton {...menuButton} key={menuButton.to} />
         ))}
       </Flex>
     </Box>

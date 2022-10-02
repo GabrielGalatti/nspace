@@ -77,6 +77,7 @@ const Battle: NextPage = () => {
                 value:
                   "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
               }}
+              key={`feature-${key}`}
             />
           ))}
         </Flex>
@@ -106,7 +107,7 @@ const Battle: NextPage = () => {
             Features
           </Text>
           {Object.keys(faseFeaturesMock).map((key) => (
-            <Flex mb="5px">
+            <Flex mb="5px" key={key}>
               <Text color="#fff" fontSize="14px" fontWeight="bold" pr="8px">
                 {key}:
               </Text>
